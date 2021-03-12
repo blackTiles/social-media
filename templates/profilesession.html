@@ -1,0 +1,93 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel="icon" href="{{url_for('static', filename='images/img/favicon.png')}}" type="image/png" sizes="32X32">
+    <title>{{usr[0][3]}} {{usr[0][4]}}</title>
+    <link href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css' rel='stylesheet'>
+    <link href='' rel='stylesheet'>
+    <style>
+        .profile-head {
+            transform: translateY(5rem)
+        }
+
+        .cover {
+            background-image: url(https://scontent.fdbd1-1.fna.fbcdn.net/v/t1.0-9/150554966_233895605034845_4305487625775514513_n.jpg?_nc_cat=101&ccb=3&_nc_sid=730e14&_nc_ohc=l5k8rhS1wKgAX9A-_Uw&_nc_ht=scontent.fdbd1-1.fna&oh=28b7c17d1bbc0edebbb151e75f69fd69&oe=604ECBE4);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat
+        }
+
+        body {
+            background: #654ea3;
+            background: linear-gradient(to right, #e96443, #904e95);
+            min-height: 100vh
+        }
+    </style>
+    <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+    <script type='text/javascript' src='https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js'></script>
+    <script type='text/javascript'></script>
+    <script src="https://kit.fontawesome.com/18624a5714.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+</head>
+
+<body class='snippet-body'>
+    <div class="row py-5 px-4">
+        <div class="col-md-5 mx-auto">
+            <!-- Profile widget -->
+            <div class="bg-white shadow rounded overflow-hidden">
+                <div class="px-4 pt-0 pb-4 cover">
+                    <div class="media align-items-end profile-head">
+                        <div class="profile mr-3">
+                            <img src={{url_for('static', filename='images/uploads/'+usr[0][5])}} alt="profile image"  class="rounded mb-2 img-thumbnail" style="max-width:150px;max-height: 150px;">
+                            <a href="editprofile/{{usr[0][0]}}" class="btn btn-outline-dark btn-sm btn-block">Edit profile</a>
+                        </div>
+                        <div class="media-body mb-5 text-white">
+                            <h5 class="mt-0 mb-0">{{usr[0][3]}} {{usr[0][4]}}</h5>
+                            <br>
+                        </div>
+                    </div>
+                </div>
+                <br><br>
+                <div class="p-4">
+                    <h5 class="mb-0 text-center">About</h5>
+                    <hr style="display:block;width:25%;text-align:center;margin:0px auto; height:2px; color:grey;background-color:gray">
+                    <div class="p-1 rounded shadow-sm bg-light">
+                        <p class="font-italic mb-0 text-center">{{usr[0][6]}}</p>
+                    </div>
+                </div>
+                <div class="p-0">
+                    <ul class="nav d-flex justify-content-center">
+                        <li class="nav-item btn btn-outline-dark btn-sm btn-inline-block"><a class="nav-link px-1" href="{{url_for('index')}}"><i class="fas fa-home mr-1 mr-1"></i><span>Homepage</span></a></li>
+                        &nbsp;&nbsp;
+                        <li class="nav-item btn btn-outline-dark btn-sm btn-inline-block"><a class="nav-link px-1" href="{{url_for('logout')}}"><i class="fas fa-power-off"></i> <span>Logout</span></a></li>
+                    </ul>
+                </div>
+                <div class="py-4 px-4">
+                    <div class="d-flex align-items-center justify-content-between mb-3">
+                        <h5 class="mb-0">Your Posts</h5>
+                    </div>
+                    <div class="row">
+                        {% for j in usr[1] %}
+                            <div class="card style-card">
+                                <div class="card-body profile-card-body">
+                                    <a href="/delete_post/{{j[0]}}"><i class="fas fa-trash-alt"></i></a>
+                                    <small>{{j[7]}}</small>
+                                    <p class="card-text text-justify">{{j[2]}}</p>
+                                </div>
+                                <img class="card-img-top img-fluid shadow-sm" src={{url_for('static', filename='images/uploads/'+j[3])}} alt="">
+                                <div class="card-bottom">
+                                    <a class="comments" href="/comments/{{usr[0][0]}}/{{j[0]}}"><i class="fa fa-comments" aria-hidden="true"></i> Comments <small>({{j[8]}})</small></a>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
