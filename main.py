@@ -84,7 +84,7 @@ def signup():
                 #send otp
                 sender_email = "black4tiles@gmail.com"
                 receiver_email = s_email
-                password = "piastrellenere?mean4805"
+                password = "password"
                 message = MIMEMultipart("alternative")
                 message["Subject"] = "OTP verification"
                 message["From"] = sender_email
@@ -361,13 +361,13 @@ def feedback():
         sender_name = request.form['fullname']
         sender_email = request.form['email']
         sender_msg = request.form['message']
-        account_sid = 'AC9401df5424014de632b86f74d6b071e5' 
-        auth_token = '02cc8f0d1a3552b731ed4196a0e3a40e' 
+        account_sid = '129401df0024014de000b86f74d6b071e5' 
+        auth_token = '02cc0f0d1a3552b731ab4196a0e0a40e' 
         client = Client(account_sid, auth_token) 
         message = client.messages.create( 
-                                    from_='+15167084010',  
+                                    from_='+15100000000',  
                                     body=f'{sender_name}\n{sender_email}\n{sender_msg}',      
-                                    to='+919065568504' 
+                                    to='+91000000051' 
                                 ) 
         return redirect("/form")
     else:
